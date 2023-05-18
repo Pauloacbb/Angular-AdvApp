@@ -1,3 +1,4 @@
+import { ProcessosService } from './../services/processos.service';
 import { Component, OnInit } from '@angular/core';
 import { Processo } from '../model/processo';
 
@@ -7,17 +8,7 @@ import { Processo } from '../model/processo';
   styleUrls: ['./processos.component.scss'],
 })
 export class ProcessosComponent implements OnInit {
-  processos: Processo[] = [
-    {
-      _id: '1',
-      numero: 65,
-      digito: 9,
-      ano: '2021',
-      justica: 5,
-      vara: 8,
-      clienteNome: 'Jose Carneiro',
-    },
-  ];
+  processos: Processo[] = [];
   displayedColumns = [
     'numero',
     'digito',
@@ -27,8 +18,10 @@ export class ProcessosComponent implements OnInit {
     'clienteNome',
   ];
 
-  constructor() {
+  constructor(private processosService: ProcessosService) {
     // this.processos = [];
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.processos = this.processosService.list();
+  }
 }
