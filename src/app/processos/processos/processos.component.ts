@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./processos.component.scss'],
 })
 export class ProcessosComponent implements OnInit {
-  processos: Observable<Processo[]>;
+  processos$: Observable<Processo[]>;
   displayedColumns = [
     'numero',
     'digito',
@@ -21,7 +21,7 @@ export class ProcessosComponent implements OnInit {
 
   constructor(private processosService: ProcessosService) {
     // this.processos = [];
-    this.processos = this.processosService.list();
+    this.processos$ = this.processosService.list();
   }
   ngOnInit(): void {
     // this.processos = this.processosService.list();
