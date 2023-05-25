@@ -1,7 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+
 import { Processo } from './../model/processo';
 import { ProcessosService } from './../services/processos.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-processos',
@@ -19,9 +22,23 @@ export class ProcessosComponent implements OnInit {
     'clienteNome',
   ];
 
-  constructor(private processosService: ProcessosService) {
+  constructor(
+    private processosService: ProcessosService,
+    public dialog: MatDialog
+  ) {
     // this.processos = [];
-    this.processos$ = this.processosService.list();
+    this.processos$ = this.processosService.list().pipe(
+      catchError((error) => {
+        this.onError(JSON.stringify(error));
+        return of([]);
+      })
+    );
+  }
+
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg,
+    });
   }
   ngOnInit(): void {
     // this.processos = this.processosService.list();
