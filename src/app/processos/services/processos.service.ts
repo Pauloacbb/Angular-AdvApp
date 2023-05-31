@@ -8,14 +8,14 @@ import { delay, first, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class ProcessosService {
-  private readonly API = '/aassets/processos.json';
+  private readonly API = '/assets/processos.json';
 
   constructor(private httpClient: HttpClient) {}
 
   list() {
     return this.httpClient.get<Processo[]>(this.API).pipe(
       first(),
-      delay(5000),
+      // delay(5000),
       tap((processo) => console.log(processo))
     );
   }

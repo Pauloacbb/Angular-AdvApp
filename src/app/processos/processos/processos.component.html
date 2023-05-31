@@ -39,7 +39,14 @@
         <!-- Cliente Column -->
         <ng-container matColumnDef="clienteNome">
           <th mat-header-cell *matHeaderCellDef>Cliente</th>
-          <td mat-cell *matCellDef="let e">{{ e.clienteNome }}</td>
+          <td mat-cell *matCellDef="let e">
+            {{ e.clienteNome }}
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Cliente"
+              fontIcon="{{ e.clienteNome | cliente }}"
+            ></mat-icon>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
