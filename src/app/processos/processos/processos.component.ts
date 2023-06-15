@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
@@ -20,11 +21,14 @@ export class ProcessosComponent implements OnInit {
     'justica',
     'vara',
     'clienteNome',
+    'Actions',
   ];
 
   constructor(
     private processosService: ProcessosService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     // this.processos = [];
     this.processos$ = this.processosService.list().pipe(
@@ -42,5 +46,9 @@ export class ProcessosComponent implements OnInit {
   }
   ngOnInit(): void {
     // this.processos = this.processosService.list();
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 }
