@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProcessosRoutingModule } from './processos-routing.module';
 import { ProcessosComponent } from './processos/processos.component';
 import { ProcessoFormComponent } from './processo-form/processo-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ProcessosComponent, ProcessoFormComponent],
@@ -14,6 +15,7 @@ import { ProcessoFormComponent } from './processo-form/processo-form.component';
     ProcessosRoutingModule,
     AppMaterialModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProcessosModule {}

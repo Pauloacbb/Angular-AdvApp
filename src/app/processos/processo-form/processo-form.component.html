@@ -1,1 +1,43 @@
-<p>processo-form works!</p>
+<mat-card>
+  <mat-card-content>
+    <mat-toolbar color="primary">Informações do Processo</mat-toolbar>
+
+    <form [formGroup]="form">
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Numero" formControlName="numero" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Digito" formControlName="digito" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Ano" formControlName="ano" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Justiça" formControlName="justica" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Vara" formControlName="vara" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input
+          matInput
+          placeholder="Nome do Cliente"
+          formControlName="clienteNome"
+        />
+      </mat-form-field>
+    </form>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onSubmit()">
+        Salvar
+      </button>
+      <button mat-raised-button color="warn" (click)="onCancel()">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
