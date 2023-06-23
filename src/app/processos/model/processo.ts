@@ -4,6 +4,7 @@ export interface Processo {
   digito: number;
   ano: string;
   justica: number;
+  tribunal: number;
   vara: number;
   clienteNome: string;
 }

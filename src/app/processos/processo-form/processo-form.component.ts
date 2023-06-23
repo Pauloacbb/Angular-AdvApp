@@ -22,6 +22,7 @@ export class ProcessoFormComponent implements OnInit {
       digito: [null],
       ano: [null],
       justica: [null],
+      tribunal: [null],
       vara: [null],
       clienteNome: [null],
     });

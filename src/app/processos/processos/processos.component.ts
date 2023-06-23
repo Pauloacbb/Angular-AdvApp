@@ -19,6 +19,7 @@ export class ProcessosComponent implements OnInit {
     'digito',
     'ano',
     'justica',
+    'tribunal',
     'vara',
     'clienteNome',
     'Actions',
