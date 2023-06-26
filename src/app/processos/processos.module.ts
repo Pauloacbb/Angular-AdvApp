@@ -7,9 +7,10 @@ import { ProcessosRoutingModule } from './processos-routing.module';
 import { ProcessosComponent } from './processos/processos.component';
 import { ProcessoFormComponent } from './processo-form/processo-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProcessosListComponent } from './processos-list/processos-list.component';
 
 @NgModule({
-  declarations: [ProcessosComponent, ProcessoFormComponent],
+  declarations: [ProcessosComponent, ProcessoFormComponent, ProcessosListComponent],
   imports: [
     CommonModule,
     ProcessosRoutingModule,

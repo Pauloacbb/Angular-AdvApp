@@ -14,16 +14,6 @@ import { ProcessosService } from './../services/processos.service';
 })
 export class ProcessosComponent implements OnInit {
   processos$: Observable<Processo[]>;
-  displayedColumns = [
-    'numero',
-    'digito',
-    'ano',
-    'justica',
-    'tribunal',
-    'vara',
-    'clienteNome',
-    'Actions',
-  ];
 
   constructor(
     private processosService: ProcessosService,
