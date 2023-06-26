@@ -1,10 +1,10 @@
 export interface Processo {
   _id: string;
-  numero: number;
-  digito: number;
+  numero: string;
+  digito: string;
   ano: string;
-  justica: number;
-  tribunal: number;
-  vara: number;
+  justica: string;
+  tribunal: string;
+  vara: string;
   clienteNome: string;
 }

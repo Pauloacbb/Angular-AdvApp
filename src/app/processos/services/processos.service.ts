@@ -20,7 +20,7 @@ export class ProcessosService {
     );
   }
 
-  save(record: Processo) {
+  save(record: Partial<Processo>) {
     console.log(record);
     return this.httpClient.post<Processo>(this.API, record).pipe(first());
   }
