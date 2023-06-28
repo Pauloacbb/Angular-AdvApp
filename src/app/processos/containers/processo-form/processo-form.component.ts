@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
-import { ProcessosService } from '../services/processos.service';
+import { ProcessosService } from '../../services/processos.service';
 
 @Component({
   selector: 'app-processo-form',

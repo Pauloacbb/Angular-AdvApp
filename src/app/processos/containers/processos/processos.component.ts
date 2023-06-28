@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
-import { Processo } from './../model/processo';
-import { ProcessosService } from './../services/processos.service';
+import { Processo } from '../../model/processo';
+import { ProcessosService } from '../../services/processos.service';
 
 @Component({
   selector: 'app-processos',

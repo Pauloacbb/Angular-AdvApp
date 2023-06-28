@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProcessosComponent } from './processos/processos.component';
-import { ProcessoFormComponent } from './processo-form/processo-form.component';
+import { ProcessosComponent } from './containers/processos/processos.component';
+import { ProcessoFormComponent } from './containers/processo-form/processo-form.component';
 
 const routes: Routes = [
   { path: '', component: ProcessosComponent },

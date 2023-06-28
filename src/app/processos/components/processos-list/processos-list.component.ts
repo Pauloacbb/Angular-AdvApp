@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Processo } from '../model/processo';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Processo } from '../../model/processo';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProcessosListComponent implements OnInit {
   @Input() processos: Processo[] = [];
+  @Output() add = new EventEmitter(false);
 
   readonly displayedColumns = [
     'numero',
@@ -21,10 +22,10 @@ export class ProcessosListComponent implements OnInit {
     'Actions',
   ];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor() {}
   ngOnInit(): void {}
 
   onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.add.emit(true);
   }
 }
