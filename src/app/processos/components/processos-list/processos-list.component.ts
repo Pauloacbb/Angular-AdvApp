@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProcessosListComponent implements OnInit {
   @Input() processos: Processo[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   readonly displayedColumns = [
     'numero',
@@ -27,5 +28,9 @@ export class ProcessosListComponent implements OnInit {
 
   onAdd() {
     this.add.emit(true);
+  }
+
+  onEdit(processo: Processo) {
+    this.edit.emit(processo);
   }
 }

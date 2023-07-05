@@ -65,8 +65,13 @@
       </button>
     </mat-header-cell>
 
-    <mat-cell *matCellDef="let prococesso">
-      <button mat-icon-button color="primary" aria-label="Editar processo">
+    <mat-cell *matCellDef="let processo">
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Editar processo"
+        (click)="onEdit(processo)"
+      >
         <mat-icon>edit</mat-icon>
       </button>
 

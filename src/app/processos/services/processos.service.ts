@@ -20,6 +20,10 @@ export class ProcessosService {
     );
   }
 
+  loadById(id: string) {
+    return this.httpClient.get<Processo>(`${this.API}/${id}`);
+  }
+
   save(record: Partial<Processo>) {
     console.log(record);
     return this.httpClient.post<Processo>(this.API, record).pipe(first());

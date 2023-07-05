@@ -7,6 +7,7 @@
         *ngIf="processos$ | async as processos; else loading"
         [processos]="processos"
         (add)="onAdd()"
+        (edit)="onEdit($event)"
       ></app-processos-list>
 
       <ng-template #loading>

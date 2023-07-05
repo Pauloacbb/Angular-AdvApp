@@ -42,4 +42,7 @@ export class ProcessosComponent implements OnInit {
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
+  onEdit(processo: Processo) {
+    this.router.navigate(['edit', processo._id], { relativeTo: this.route });
+  }
 }
