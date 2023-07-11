@@ -14,9 +14,9 @@ export class ProcessosService {
 
   list() {
     return this.httpClient.get<Processo[]>(this.API).pipe(
-      first(),
+      first()
       // delay(5000),
-      tap((processo) => console.log(processo))
+      // tap((processo) => console.log(processo))
     );
   }
 
@@ -25,7 +25,22 @@ export class ProcessosService {
   }
 
   save(record: Partial<Processo>) {
-    console.log(record);
+    // console.log(record);
+    if (record._id) {
+      // console.log('update');
+      return this.update(record);
+    }
+    // console.log('create');
+    return this.create(record);
+  }
+
+  private create(record: Partial<Processo>) {
     return this.httpClient.post<Processo>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Processo>) {
+    return this.httpClient
+      .put<Processo>(`${this.API}/${record._id}`, record)
+      .pipe(first());
   }
 }
