@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
 import { ProcessosService } from '../../services/processos.service';
+import { ActivatedRoute } from '@angular/router';
+import { Processo } from '../../model/processo';
 
 @Component({
   selector: 'app-processo-form',
@@ -12,6 +14,7 @@ import { ProcessosService } from '../../services/processos.service';
 })
 export class ProcessoFormComponent implements OnInit {
   form = this.formBuilder.group({
+    _id: new FormControl('', { nonNullable: true }),
     numero: new FormControl('', { nonNullable: true }),
     digito: new FormControl('', { nonNullable: true }),
     ano: new FormControl('', { nonNullable: true }),
@@ -25,12 +28,24 @@ export class ProcessoFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: ProcessosService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {
     // this.form =
   }
   ngOnInit(): void {
     // this.form.value.
+    const processo: Processo = this.route.snapshot.data['processo'];
+    this.form.setValue({
+      _id: processo._id,
+      numero: processo.numero,
+      digito: processo.digito,
+      ano: processo.ano,
+      justica: processo.justica,
+      tribunal: processo.tribunal,
+      vara: processo.vara,
+      clienteNome: processo.clienteNome,
+    });
   }
 
   onSubmit() {
