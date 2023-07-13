@@ -43,4 +43,8 @@ export class ProcessosService {
       .put<Processo>(`${this.API}/${record._id}`, record)
       .pipe(first());
   }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
 }

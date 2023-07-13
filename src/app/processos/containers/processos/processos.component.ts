@@ -6,6 +6,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 
 import { Processo } from '../../model/processo';
 import { ProcessosService } from '../../services/processos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-processos',
@@ -13,15 +14,20 @@ import { ProcessosService } from '../../services/processos.service';
   styleUrls: ['./processos.component.scss'],
 })
 export class ProcessosComponent implements OnInit {
-  processos$: Observable<Processo[]>;
+  processos$: Observable<Processo[]> | null = null;
 
   constructor(
     private processosService: ProcessosService,
     public dialog: MatDialog,
     private router: Router,
+    private snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {
     // this.processos = [];
+    this.refresh();
+  }
+
+  refresh() {
     this.processos$ = this.processosService.list().pipe(
       catchError((error) => {
         this.onError(JSON.stringify(error));
@@ -44,5 +50,18 @@ export class ProcessosComponent implements OnInit {
   }
   onEdit(processo: Processo) {
     this.router.navigate(['edit', processo._id], { relativeTo: this.route });
+  }
+  onRemove(processo: Processo) {
+    this.processosService.remove(processo._id).subscribe(
+      () => {
+        this.refresh();
+        this.snackBar.open('Processo deletado com sucesso', 'X', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      },
+      () => this.onError('Erro ao remover processo')
+    );
   }
 }

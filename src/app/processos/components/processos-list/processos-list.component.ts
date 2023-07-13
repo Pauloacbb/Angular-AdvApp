@@ -11,6 +11,7 @@ export class ProcessosListComponent implements OnInit {
   @Input() processos: Processo[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = [
     'numero',
@@ -32,5 +33,9 @@ export class ProcessosListComponent implements OnInit {
 
   onEdit(processo: Processo) {
     this.edit.emit(processo);
+  }
+
+  onDelete(processo: Processo) {
+    this.remove.emit(processo);
   }
 }
