@@ -7,6 +7,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 import { Processo } from '../../model/processo';
 import { ProcessosService } from '../../services/processos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-processos',
@@ -52,16 +53,24 @@ export class ProcessosComponent implements OnInit {
     this.router.navigate(['edit', processo._id], { relativeTo: this.route });
   }
   onRemove(processo: Processo) {
-    this.processosService.remove(processo._id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Processo deletado com sucesso', 'X', {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
-      },
-      () => this.onError('Erro ao remover processo')
-    );
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Confirma remoção do processo?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.processosService.remove(processo._id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Processo deletado com sucesso', 'X', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            });
+          },
+          () => this.onError('Erro ao remover processo')
+        );
+      }
+    });
   }
 }
