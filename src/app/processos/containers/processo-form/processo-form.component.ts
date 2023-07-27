@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
@@ -21,7 +26,14 @@ export class ProcessoFormComponent implements OnInit {
     justica: new FormControl('', { nonNullable: true }),
     tribunal: new FormControl('', { nonNullable: true }),
     vara: new FormControl('', { nonNullable: true }),
-    clienteNome: new FormControl('', { nonNullable: true }),
+    clienteNome: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(200),
+      ],
+    }),
   });
 
   constructor(
@@ -70,5 +82,28 @@ export class ProcessoFormComponent implements OnInit {
 
   private onError() {
     this.snackBar.open('Erro ao salvar processo', '', { duration: 3000 });
+  }
+
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName);
+    if (field?.hasError('required')) {
+      return 'Campo Obrigatorio';
+    }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength = field.errors
+        ? field.errors['minlength']['requiredLength']
+        : 3;
+      return `Caracteres minimos: ${requiredLength}`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength = field.errors
+        ? field.errors['maxlength']['requiredLength']
+        : 200;
+      return `Caracteres maximos: ${requiredLength}`;
+    }
+
+    return 'Erro';
   }
 }

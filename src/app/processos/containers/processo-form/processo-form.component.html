@@ -33,6 +33,9 @@
           placeholder="Nome do Cliente"
           formControlName="clienteNome"
         />
+        <mat-error *ngIf="form.get('clienteNome')?.invalid">{{
+          getErrorMessage("clienteNome")
+        }}</mat-error>
       </mat-form-field>
     </form>
     <mat-card-actions>
